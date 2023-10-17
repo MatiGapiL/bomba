@@ -1,25 +1,26 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34024.191
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp4", "ConsoleApp4\ConsoleApp4.csproj", "{20912767-6EB0-468B-816B-BE2CDF84E351}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20912767-6EB0-468B-816B-BE2CDF84E351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20912767-6EB0-468B-816B-BE2CDF84E351}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20912767-6EB0-468B-816B-BE2CDF84E351}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20912767-6EB0-468B-816B-BE2CDF84E351}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {71150B11-7116-44F1-8D0D-C5E2A09FD227}
-	EndGlobalSection
-EndGlobal
+using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Chrome;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Utwórz opcje przeglądarki Chrome
+        ChromeOptions options = new ChromeOptions();
+
+        // Zdefiniuj URL zdalnego sterownika WebDriver
+        string remoteDriverUrl = "http://localhost:4444/wd/hub"; // Adres do zdalnego sterownika WebDriver
+
+        // Utwórz zdalny sterownik Chrome
+        IWebDriver driver = new RemoteWebDriver(new Uri(remoteDriverUrl), options.ToCapabilities());
+
+        // Otwórz stronę internetową
+        driver.Navigate().GoToUrl("https://www.example.com");
+
+        // Dodaj tutaj swoje operacje na stronie
+
+        // Zamknij przeglądarkę
+        driver.Quit();
+    }
+}
